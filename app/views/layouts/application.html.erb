@@ -28,7 +28,7 @@
       </script>
     <% end %>
 
-    <title><%= yield(:page_title).present? ? yield(:page_title) : t("bigbluebutton") %></title>
+    <title><%= yield(:page_title).present? ? yield(:page_title) : "brainaly" %></title>
     <meta property="og:title" content="<%= yield(:page_title).present? ? yield(:page_title) : t("bigbluebutton") %>" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content=<%=user_locale(@room&.owner)%> />
@@ -48,7 +48,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= favicon_link_tag asset_path('favicon.ico') %>
+    <%= favicon_link_tag asset_path('brainaly-favo.ico') %>
 
     <!-- Primary color styling -->
     <%= stylesheet_link_tag themes_primary_path %>

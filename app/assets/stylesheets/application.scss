@@ -166,6 +166,18 @@ input:focus {
     border-bottom: 1px solid $primary;
   }
 }
+.header-brand-img {
+    height: 114px;
+    vertical-align: bottom;
+    margin-right: 0.5rem;
+    min-width: 199px;
+    top: -26px;
+    position: absolute;
+}
+.header.py-4 {
+    background: #0C003C;
+    position: relative;
+}
 
 table {
   thead {

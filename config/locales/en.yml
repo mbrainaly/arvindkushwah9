@@ -336,8 +336,8 @@ en:
     search:
       start: Start searching...
   landing:
-    about: "%{href} is a simple front-end for your BigBlueButton open-source web conferencing server. You can create your own rooms to host sessions, or join others using a short and convenient link."
-    welcome: Welcome to BigBlueButton.
+    about: "Brainaly meet is a virtual classroom designed for effective teaching and learning. Our online platform enables students and professionals from all over the world to connect with each other and learn in a collaborative environment. With Brainaly Meet, you can achieve your goals faster and more efficiently, regardless of your location."
+    welcome: Welcome to Brainaly Meet!
     video: Watch our tutorial on using Greenlight
     upgrade: Show me how to upgrade to 2.0!
     version: We've released a new version of Greenlight, but your database isn't compatible.

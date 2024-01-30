@@ -22,7 +22,7 @@ class HealthCheckController < ApplicationController
 
   # GET /health_check
   def all
-    response = "success"
+    response = "success - 200 Ok"
     @cache_expire = 10.seconds
 
     begin
