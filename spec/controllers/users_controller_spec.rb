@@ -632,4 +632,13 @@ describe UsersController, type: :controller do
       expect(response).to redirect_to(root_path)
     end
   end
+
+  describe "POST #subscription" do
+    it "Subcription user chack" do
+      post :subscrition, params: {"data"=>{"object"=>{"email"=>"#{Faker::Internet.email}"}}}
+
+      expect(response.status).to eq(201)
+      expect(JSON.parse(response.body)["data"]["message"]).to eq("Subscription successfully")
+    end
+  end
 end

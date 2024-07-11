@@ -12,18 +12,19 @@
 # You should have received a copy of the GNU Lesser General Public License along
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
-
-<div class="col-lg-4 col-md-6 col-sm-12">
-  <div id="create-room-block" class="card-body p-1 mb-5 background" data-toggle="modal" data-target="#createRoomModal">
-    <div class="row p-3">
-      <div class="col-4">
-        <span class="stamp stamp-md bg-primary">
-          <i class="fas fa-plus"></i>
-        </span>
-      </div>
-      <div class="col-8">
-        <h4 class="my-2"><%= t("room.create_room") %></h4>
+<% if current_user && current_user.subscriptions.last && current_user.subscriptions.last.is_paid %>
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div id="create-room-block" class="card-body p-1 mb-5 background" data-toggle="modal" data-target="#createRoomModal">
+      <div class="row p-3">
+        <div class="col-4">
+          <span class="stamp stamp-md bg-primary">
+            <i class="fas fa-plus"></i>
+          </span>
+        </div>
+        <div class="col-8">
+          <h4 class="my-2"><%= t("room.create_room") %></h4>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>

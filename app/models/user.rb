@@ -30,6 +30,7 @@ class User < ApplicationRecord
 
   has_many :rooms
   has_many :shared_access, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   belongs_to :main_room, class_name: 'Room', foreign_key: :room_id, required: false
 
   has_and_belongs_to_many :roles, join_table: :users_roles # obsolete

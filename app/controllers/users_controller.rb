@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   include Registrar
   include Recorder
   include Rolify
-
+  skip_before_action :verify_authenticity_token, only: [:subscrition]
   before_action :find_user, only: [:edit, :change_password, :delete_account, :update, :update_password]
   before_action :ensure_unauthenticated_except_twitter, only: [:create]
   before_action :check_user_signup_allowed, only: [:create]
@@ -221,6 +221,25 @@ class UsersController < ApplicationController
     # Respond with JSON object of users
     respond_to do |format|
       format.json { render body: initial_list.pluck_to_hash(:uid, :name).to_json }
+    end
+  end
+
+  def subscrition
+    if params["data"]["object"].present? && params["data"]["object"]["email"].present?
+      email = params["data"]["object"]["email"]
+      name = email.split("@").first
+
+      @user = User.find_by(email: email.downcase)
+
+      unless @user.present?
+        @user = User.new(email: email.downcase, password: Rails.configuration.admin_password_default, provider: (@user_domain || "greenlight"), name: name)
+        @user.save
+        @user.set_role :pending
+        @user.set_role(initial_user_role(@user.email))
+      end
+
+      @user.subscriptions.create(email: @user.email, name: @user.name, is_paid: true)
+      render json: {data: {message: "Subscription successfully"}}, status: :created
     end
   end
 

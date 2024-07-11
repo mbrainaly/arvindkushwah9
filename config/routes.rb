@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#signin', as: :signin
   get '/signup', to: 'sessions#new', as: :signup
   post '/signup', to: 'users#create', as: :create_user
+
+  # Check Subscriptions
+  post '/subscrition', to: 'users#subscrition', as: :subscrition
   match '/ldap_signin', to: 'sessions#ldap_signin', as: :ldap_signin, via: [:get, :post]
 
   # Redirect to terms page
