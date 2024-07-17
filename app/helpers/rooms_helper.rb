@@ -66,4 +66,8 @@ module RoomsHelper
     total += user.shared_rooms.length if shared_access_allowed
     total
   end
+
+  def is_susbcription_expire
+    current_user.subscriptions.last.expire_date.present? && current_user.subscriptions.last.expire_date > Time.now
+  end
 end

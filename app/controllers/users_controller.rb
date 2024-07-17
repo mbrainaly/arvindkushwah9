@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   include Registrar
   include Recorder
   include Rolify
-  skip_before_action :verify_authenticity_token, only: [:subscrition]
+  skip_before_action :verify_authenticity_token, only: [:subscription]
   before_action :find_user, only: [:edit, :change_password, :delete_account, :update, :update_password]
   before_action :ensure_unauthenticated_except_twitter, only: [:create]
   before_action :check_user_signup_allowed, only: [:create]
@@ -224,7 +224,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def subscrition
+  def subscription
     if params["data"]["object"].present? && params["data"]["object"]["email"].present?
       email = params["data"]["object"]["email"]
       name = email.split("@").first
@@ -237,8 +237,9 @@ class UsersController < ApplicationController
         @user.set_role :pending
         @user.set_role(initial_user_role(@user.email))
       end
-
-      @user.subscriptions.create(email: @user.email, name: @user.name, is_paid: true)
+      subs_created_date = params["data"]["object"]["created"]
+      expire_date = Time.at(subs_created_date) + 30.days
+      @user.subscriptions.create(email: @user.email, name: @user.name, is_paid: true, expire_date: expire_date)
       render json: {data: {message: "Subscription successfully"}}, status: :created
     end
   end
